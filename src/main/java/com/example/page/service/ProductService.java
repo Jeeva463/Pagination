@@ -7,8 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.example.page.common.ApiResponse;
 import com.example.page.common.Pagination;
+import com.example.page.dto.ApiResponse;
 import com.example.page.dto.Dto;
 import com.example.page.entity.Product;
 import com.example.page.repository.ProductRepository;
@@ -32,15 +32,21 @@ public class ProductService {
 //	}
 	public ApiResponse getDetails(Pageable pageable) {
 		ApiResponse response = new ApiResponse();
+		try {
 		Page<Product> obj = productRepository.findAll(pageable);
 		
 		Pagination pagination = Pagination.create(obj);//obj vaithu pagination irukkura field answer pannudhu
-		List<Product> Product = obj.getContent();//  obj.getContent--edhai type pannale list tha irukkanunu solludhu 
+		List<Product> Product = obj.getContent();//obj.getContent--edhai type pannale list tha irukkanunu solludhu 
 		
 		Dto dto = new Dto();
 		dto.setPagination(pagination);
 		dto.setProduct(Product);
 		response.setData(dto);
+		response.setStatus("200");
+		}catch(Exception e){
+			response.setError("Pagination isn't vaild");
+			response.setStatus("bad request");
+		}
 		return response;
 	}
 }

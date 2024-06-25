@@ -1,4 +1,4 @@
-package com.example.page.common;
+package com.example.page.dto;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import lombok.Data;
 public class ApiResponse {
 	
 	Object data;
-	Object status;
-	Object error;
+	String status;
+	String error;
 
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.page.common.ApiResponse;
+import com.example.page.dto.ApiResponse;
 import com.example.page.entity.Product;
 import com.example.page.service.ProductService;
 
